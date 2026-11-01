@@ -1,60 +1,35 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b10">
-  <title>留言管理後台</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b10"><title>留言管理後台</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body class="admin-body">
+  <div class="ambient ambient-one"></div>
   <main class="admin-shell">
     <header class="admin-header">
-      <div>
-        <p class="eyebrow">PRIVATE DASHBOARD</p>
-        <h1>留言管理</h1>
-        <p class="muted">只有指定的管理者帳號可以存取。</p>
-      </div>
+      <div><p class="eyebrow">PRIVATE DASHBOARD</p><h1>留言管理</h1><p class="muted">管理私人留言及公開留言牆。</p></div>
       <a class="text-link" href="./index.html">查看公開頁面 ↗</a>
     </header>
-
     <section id="login-panel" class="message-card login-card">
-      <h2>管理者登入</h2>
-      <p class="muted">請使用已授權的 Google 帳號登入。</p>
-      <button id="google-login" type="button">使用 Google 登入</button>
-      <p id="login-status" class="form-status" role="status"></p>
+      <h2>管理者登入</h2><p class="muted">請使用已授權的 Google 帳號登入。</p>
+      <button id="google-login" type="button">使用 Google 登入</button><p id="login-status" class="form-status" role="status"></p>
     </section>
-
     <section id="dashboard" hidden>
-      <div class="dashboard-top">
-        <div>
-          <p class="muted">目前登入</p>
-          <strong id="admin-email"></strong>
-        </div>
-        <button id="logout-button" class="button-secondary" type="button">登出</button>
-      </div>
-
-      <div class="stats-grid">
-        <article class="stat-card"><span>全部留言</span><strong id="total-count">0</strong></article>
+      <div class="dashboard-top"><div><p class="muted">目前登入</p><strong id="admin-email"></strong></div><button id="logout-button" class="button-secondary" type="button">登出</button></div>
+      <div class="stats-grid stats-four">
+        <article class="stat-card"><span>全部收到</span><strong id="total-count">0</strong></article>
+        <article class="stat-card"><span>公開留言</span><strong id="public-count">0</strong></article>
+        <article class="stat-card"><span>私人留言</span><strong id="private-count">0</strong></article>
         <article class="stat-card"><span>未讀留言</span><strong id="unread-count">0</strong></article>
-        <article class="stat-card"><span>已讀留言</span><strong id="read-count">0</strong></article>
       </div>
-
-      <div class="toolbar">
-        <input id="search-input" type="search" placeholder="搜尋留言內容……" aria-label="搜尋留言">
-        <select id="filter-select" aria-label="留言篩選">
-          <option value="all">全部留言</option>
-          <option value="unread">未讀</option>
-          <option value="read">已讀</option>
-        </select>
-      </div>
-      <div id="message-list" class="message-list">
-        <p class="muted">正在載入留言……</p>
-      </div>
+      <div class="toolbar"><input id="search-input" type="search" placeholder="搜尋留言內容……" aria-label="搜尋留言">
+        <select id="filter-select" aria-label="留言篩選"><option value="all">全部留言</option><option value="public">公開</option><option value="private">私人</option><option value="unread">未讀</option><option value="read">已讀</option></select></div>
+      <div id="message-list" class="message-list"><p class="muted">正在載入留言……</p></div>
       <p id="dashboard-status" class="form-status" role="status"></p>
     </section>
     <footer>PRIVATE ADMIN AREA · KEEP THIS URL PRIVATE</footer>
   </main>
   <script type="module" src="./js/admin.js"></script>
-</body>
-</html>
+</body></html>
