@@ -9,28 +9,42 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
   <main class="public-shell">
-    <div class="brand-mark" aria-hidden="true">✳</div>
-    <p class="eyebrow">ANONYMOUS MESSAGE BOX</p>
-    <h1>有什麼想對我說的？</h1>
-    <p class="intro">有什麼想分享的事情、心情，或一直想說卻沒說出口的話？<br>不需要留下姓名，放心寫下來。</p>
+    <header class="hero">
+      <div class="brand-mark" aria-hidden="true">✳</div>
+      <p class="eyebrow">ANONYMOUS MESSAGE BOX</p>
+      <h1>有什麼想對我說的？</h1>
+      <p class="intro">有什麼想分享的事情、心情，或一直想說卻沒說出口的話？<br>不需要留下姓名，放心寫下來。</p>
+      <div class="public-counter"><span class="pulse-dot"></span><strong id="public-count">—</strong><span>則公開分享</span></div>
+    </header>
 
-    <form id="message-form" class="message-card">
-      <label for="message">你的匿名留言</label>
-      <textarea id="message" name="message" maxlength="2000" minlength="1"
-        placeholder="在這裡寫下你想分享的事……" required></textarea>
-      <div class="field-meta">
-        <span>請勿填寫密碼、電話或其他敏感個人資料。</span>
-        <span id="counter">0 / 2000</span>
+    <form id="message-form" class="message-card compose-card">
+      <div class="section-heading"><span class="heading-icon">✎</span><label for="message">寫下你的匿名留言</label></div>
+      <textarea id="message" name="message" maxlength="2000" minlength="1" placeholder="在這裡寫下你想分享的事……" required></textarea>
+      <div class="field-meta"><span>請勿填寫密碼、電話或其他敏感個人資料。</span><span id="counter">0 / 2000</span></div>
+      <div class="visibility-choice">
+        <label class="visibility-option selected" id="private-option">
+          <input type="radio" name="visibility" value="private" checked>
+          <span class="choice-icon">🔒</span><span><b>私人留言</b><small>只有管理員看得到</small></span>
+        </label>
+        <label class="visibility-option" id="public-option">
+          <input type="radio" name="visibility" value="public">
+          <span class="choice-icon">🌐</span><span><b>公開留言</b><small>顯示在下方留言牆</small></span>
+        </label>
       </div>
       <button id="submit-button" type="submit">匿名送出 <span aria-hidden="true">↗</span></button>
       <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </form>
 
-    <div class="privacy-note">
-      <span class="lock-icon" aria-hidden="true">▣</span>
-      <span>留言不會公開顯示，只有管理者可以查看。</span>
-    </div>
+    <section class="wall-section" aria-labelledby="wall-title">
+      <div class="wall-heading">
+        <div><p class="eyebrow">COMMUNITY WALL</p><h2 id="wall-title">大家的公開分享</h2><p class="muted">只有選擇公開的留言會出現在這裡。</p></div>
+        <span class="wall-count" id="wall-count">0 則</span>
+      </div>
+      <div id="public-feed" class="public-feed"><div class="empty-state">正在載入公開留言……</div></div>
+      <p id="feed-status" class="form-status" role="status"></p>
+    </section>
     <footer>MADE FOR A QUIETER CONVERSATION</footer>
   </main>
   <script type="module" src="./js/submit.js"></script>
