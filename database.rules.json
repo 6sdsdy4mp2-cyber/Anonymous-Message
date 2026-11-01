@@ -3,8 +3,21 @@
     "messages": {
       ".read": "auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com'",
       "$messageId": {
-        ".write": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || (auth == null && !data.exists())",
-        ".validate": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || (newData.hasChildren(['content', 'createdAt']) && newData.numChildren() == 2 && newData.child('content').isString() && newData.child('content').val().length > 0 && newData.child('content').val().length <= 2000 && newData.child('createdAt').isNumber() && newData.child('createdAt').val() == now)"
+        ".write": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || ((auth == null || auth.token.firebase.sign_in_provider == 'anonymous') && !data.exists())",
+        ".validate": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || (newData.hasChildren(['content', 'createdAt', 'visibility']) && newData.child('content').isString() && newData.child('content').val().length > 0 && newData.child('content').val().length <= 2000 && newData.child('createdAt').isNumber() && (newData.child('visibility').val() == 'public' || newData.child('visibility').val() == 'private') && (!newData.child('status').exists()))"
+      }
+    },
+    "publicPosts": {
+      ".read": true,
+      "$postId": {
+        ".write": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || ((auth == null || auth.token.firebase.sign_in_provider == 'anonymous') && !data.exists())",
+        ".validate": "(auth != null && auth.token.email != null && auth.token.email_verified == true && auth.token.email == 'jasonlao851@gmail.com') || (newData.hasChildren(['content', 'createdAt']) && newData.child('content').isString() && newData.child('content').val().length > 0 && newData.child('content').val().length <= 2000 && newData.child('createdAt').isNumber())",
+        "likes": {
+          "$uid": {
+            ".write": "(auth != null && auth.token.firebase.sign_in_provider == 'anonymous' && auth.uid == $uid && !data.exists()) || (auth != null && auth.token.email == 'jasonlao851@gmail.com' && auth.token.email_verified == true)",
+            ".validate": "newData.val() == true"
+          }
+        }
       }
     }
   }
